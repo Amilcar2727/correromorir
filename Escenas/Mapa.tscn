@@ -1,0 +1,38 @@
+[gd_scene load_steps=5 format=3 uid="uid://rtvo7y8nv5bt"]
+
+[ext_resource type="PackedScene" uid="uid://detaunj76ong6" path="res://Escenas/Enemy.tscn" id="1_oi00o"]
+[ext_resource type="PackedScene" uid="uid://dgy71uqq2vtv7" path="res://Escenas/Player.tscn" id="2_cb4uo"]
+[ext_resource type="PackedScene" uid="uid://q6e5mcfrrmjk" path="res://Escenas/wall.tscn" id="3_y7k8b"]
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_ltep1"]
+vertices = PackedVector2Array(695, 459, 1122, 30, 1122, 618, 658, 618, 658, 524, 520, 172, 520, 62, 585, 99, 585, 347, 585, 459, 298, 524, 695, 99, 276, 347, 160, 172, 276, 457, 585, 457, 298, 618, 30, 618, 30, 30, 160, 62)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3, 4), PackedInt32Array(5, 6, 7, 8), PackedInt32Array(9, 0, 4, 10), PackedInt32Array(1, 0, 11), PackedInt32Array(5, 8, 12, 13), PackedInt32Array(14, 15, 9, 10), PackedInt32Array(10, 16, 17, 18, 14), PackedInt32Array(12, 14, 18, 13), PackedInt32Array(19, 13, 18), PackedInt32Array(19, 18, 1, 6), PackedInt32Array(6, 1, 11, 7)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(0, 0, 0, 648, 1152, 648, 1152, 0)])
+agent_radius = 30.0
+
+[node name="Main" type="Node2D"]
+
+[node name="Enemy" parent="." node_paths=PackedStringArray("player") instance=ExtResource("1_oi00o")]
+position = Vector2(897, 247)
+player = NodePath("../Player")
+
+[node name="Player" parent="." instance=ExtResource("2_cb4uo")]
+position = Vector2(227, 359)
+
+[node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
+navigation_polygon = SubResource("NavigationPolygon_ltep1")
+
+[node name="Wall" parent="NavigationRegion2D" instance=ExtResource("3_y7k8b")]
+position = Vector2(340, 117)
+
+[node name="Wall2" parent="NavigationRegion2D" instance=ExtResource("3_y7k8b")]
+position = Vector2(640, 279)
+rotation = 1.5708
+
+[node name="Wall3" parent="NavigationRegion2D" instance=ExtResource("3_y7k8b")]
+position = Vector2(478, 579)
+rotation = -3.14159
+
+[node name="Wall4" parent="NavigationRegion2D" instance=ExtResource("3_y7k8b")]
+position = Vector2(456, 402)
+rotation = -3.14159

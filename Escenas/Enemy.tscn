@@ -1,0 +1,24 @@
+[gd_scene load_steps=4 format=3 uid="uid://detaunj76ong6"]
+
+[ext_resource type="Texture2D" uid="uid://uxxjstn4eg2o" path="res://icon.svg" id="1_6tv85"]
+[ext_resource type="Script" path="res://Scripts/enemy_pathfinding.gd" id="1_rqprl"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_hn3sf"]
+radius = 37.0
+
+[node name="Enemy" type="CharacterBody2D"]
+script = ExtResource("1_rqprl")
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+modulate = Color(1, 0.0941176, 0.533333, 1)
+scale = Vector2(0.6, 0.6)
+texture = ExtResource("1_6tv85")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_hn3sf")
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+avoidance_enabled = true
+
+[connection signal="velocity_computed" from="NavigationAgent2D" to="." method="_on_navigation_agent_2d_velocity_computed"]
